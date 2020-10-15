@@ -1,12 +1,11 @@
 import os
 import logging
-import random
 import discord
 from dotenv import load_dotenv
 from discord.ext import commands
 import builtins
 
-bot = commands.Bot(command_prefix = '!', activity = discord.Game('with the discord API!'))
+bot = commands.Bot(command_prefix = 'cu ', activity = discord.Game('with the discord API!'))
 bot.remove_command('help')
 builtins.bot = bot
 
@@ -21,17 +20,8 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s: %(message)s')
 logger.addHandler(handler)
 
 @bot.command()
-async def load(ctx, extension):
-    bot.load_extension(f'cogs.{extension}')
-
-# @bot.command()
-# async def unload(ctx, extension):
-#     bot.unload_extension(f'cogs.{extension}')
-
-@bot.command()
-async def reload(ctx, extension):
-    bot.unload_extension(f'cogs.{extension}')
-    bot.load_extension(f'cogs.{extension}')
+async def who(ctx):
+    await ctx.send('Not Nathan')
 
 # Load all files in cogs folder (remove '.py' from filename when loading)
 for filename in os.listdir('./cogs'):
