@@ -13,8 +13,8 @@ class Help(commands.Cog):
         embed = discord.Embed(color=0x7ce4f7)
         embed.set_author(name='Available Commands')
         embed.add_field(name='ping', value='Pong! With latency.', inline=False)
-        embed.add_field(name='when', value='Time until Hello World starts / ends.')
-        embed.add_field(name='schedule', value='Hello World schedule')
+        embed.add_field(name='when', value='Time until CUhackit starts / ends.')
+        embed.add_field(name='schedule', value='CUhackit schedule')
         await ctx.send(embed=embed)
         
 

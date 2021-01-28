@@ -5,13 +5,12 @@ from dotenv import load_dotenv
 from discord.ext import commands
 import builtins
 
-bot = commands.Bot(command_prefix = 'cu ', activity = discord.Game('with the discord API!'))
+bot = commands.Bot(command_prefix = 'cu ', activity = discord.Game('cu help'))
 bot.remove_command('help')
 builtins.bot = bot
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
 
 logger = logging.getLogger('discord')
 logger.setLevel(logging.ERROR)

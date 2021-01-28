@@ -17,27 +17,37 @@ from discord.ext import commands
 #est is 4hrs ahead of utc
 est = tz(timedelta(hours = -4))
 
-start = dt.fromtimestamp(1602936000, tz = est) # 8am Oct 17th 2020
-end = dt.fromtimestamp(1602979200, tz = est) # 8pm Oct 17th 2020
+start = dt.fromtimestamp(1612000800, tz = est)
+end = dt.fromtimestamp(1612101600, tz = est) 
 
 orl = partial(dt.now, tz = est)
 
 
 sched = {
-    17: [
-        ('8:00 am', 'Opening Ceremony', ''),
-        ('8:30 am', 'Hacking Starts!!! (Team Formation)', ''),
-        ('9:00 am', 'Idea jam workshop', ''),
-        ('10:00 am', 'Activity 1: Jackbox', ''),
-        ('11:30 am', 'Activity 2: Trivia/Kahoot', ''),
-        ('1:00 pm', 'Activity 3: Panel Discussion', ''),
-        ('2:30 pm', 'Activity 4: Scavenger Hunt Reveal', ''),
-        ('4:00 pm', 'Activity 5: Yoga', ''),
-        ('6:30 pm', 'Hacking Ends!!!', ''),
-        ('7:00 pm', 'Demos and Judging', ''),
-        ('8:00 pm', 'Award', ''),
-        ('8:30 pm', 'Closing Ceremony', ''),
-        ('9:00 pm', 'Debrief', ''),
+    30: [
+        ('10:00 am', 'Opening Ceremony', ''),
+        ('10:30 am', 'Hacking Starts!!!', ''),
+        ('10:30 am', 'Boss of the SOC (Splunk)', ''),
+        ('12:30 am', 'Azure Skills Workshop', ''),
+        ('1:00 pm', 'Recruiting Sesssion (Softdocs)', ''),
+        ('1:30 pm', 'Trivia', ''),
+        ('2:00 pm', 'Recruiting Sesssion (LPL and Capgemini)', ''),
+        ('2:30 pm', 'Bob Ross', ''),
+        ('3:00 pm', 'Recruiting Sesssion (GLS)', ''),
+        ('3:30 pm', 'Boss of the NOC (Splunk)', ''),
+        ('4:00 pm', 'Among Us', ''),
+        ('4:30 am', 'Student Journey to Microsoft Q/A', ''),
+        ('5:00 pm', 'Air Force Cybersecurity (MLH)', ''),
+        ('5:30 pm', 'Recruiting Sesssion (LPL and ASH)', ''),
+        ('6:00 pm', 'Scavenger Hunt', ''),
+        ('7:00 pm', 'Game Tournament ', ''),
+        ('8:00 pm', 'Jackbox', ''),
+    ],
+        31: [
+        ('10:00 am', 'DevPost Submissions Due', ''),
+        ('10:30 am', 'Hacking Ends!!!', ''),
+        ('11:00 am', 'Live Demos and Judging', ''),
+        ('1:30 pm', 'Closing Ceremony', ''),
     ]
 }
 
@@ -66,9 +76,9 @@ class Times(commands.Cog):
             event = end
 
         if orl() > end:
-            breakdown = "Hello World is over :(("
+            breakdown = "CUhackit 2021 is over :(("
         else:
-            breakdown = "Hello World " \
+            breakdown = "CUhackit 2021 " \
                 + ("begins " if start > orl() else "ends ") \
                 + "in " + time_left(event) + " bb"
 
@@ -81,14 +91,14 @@ class Times(commands.Cog):
         for day, events in sched.items():
             if day >= orl().day:
 
-                embed = discord.Embed(title = 'Hello World 2020 Schedule :scroll:',
+                embed = discord.Embed(title = 'CUhackit 2021 Schedule :scroll:',
                                       color = 0x7ce4f7)
 
                 for num, event in enumerate(events):
                     event_time, event_name, link = event
-                    left = dt.strptime(f"2020 Oct {day} {event_time}", "%Y %b %d %I:%M %p").replace(tzinfo=est)
+                    left = dt.strptime(f"2021 Jan {day} {event_time}", "%Y %b %d %I:%M %p").replace(tzinfo=est)
                     if (left > orl()):
-                        embed.add_field(name=f"{num + 1}. {event_name}",
+                        embed.add_field(name=f"{num + 1}. {event_name}: Jan {day}, {event_time}",
                                     value=(f"in {time_left(left)}" + (f", [**link**]({link})" if link else '')),
                                     inline=False)
 
